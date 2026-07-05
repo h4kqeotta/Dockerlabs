@@ -12,6 +12,10 @@ Iniciamos con un escaneo en nmap:
 ```bash
 sudo nmap -p- --min-rate 2000 -A -sS -Pn -n 172.18.0.2 -oN escaneo.txt
 ```
+<img width="639" height="311" alt="2" src="https://github.com/user-attachments/assets/79edd123-afa5-4972-9562-f3641df51ddf" />
+
+Entramos a la web para ver el contenido.
+<img width="863" height="474" alt="3" src="https://github.com/user-attachments/assets/332b0d72-4b27-47cc-adc9-d6f3cb14a950" />
 
 La web no muestra nada interesante, por lo que hacemos fuzzing con gobuster:
 
