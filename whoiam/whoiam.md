@@ -1,4 +1,5 @@
 # Whoiam — DockerLabs.es 🐳
+<img width="547" height="297" alt="1" src="https://github.com/user-attachments/assets/c43fe172-0fd7-407e-93e2-5686283d9d65" />
 
 **Plataforma**: DockerLabs | **OS**: Linux | **Dificultad**: Fácil
 
