@@ -147,5 +147,4 @@ Probamos esta contraseña con el usuario root
 - File upload bypass (extensión `.phar` via BurpSuite Intruder)
 - Reverse shell PHP
 - TTY treatment
-- Enumeración manual de directorios
 - Lectura de archivos con `grep`
