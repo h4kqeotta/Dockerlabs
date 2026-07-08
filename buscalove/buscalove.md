@@ -1,4 +1,4 @@
-# buscalove — DockerLabs.es 🐳
+# Buscalove — DockerLabs.es 🐳
 
 <img width="548" height="298" alt="1" src="https://github.com/user-attachments/assets/a5e8c3c6-e59a-49a3-b501-38803e9eaf58" />
 
