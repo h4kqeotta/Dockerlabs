@@ -97,6 +97,9 @@ sudo /usr/bin/bettercap
 
 <img width="840" height="134" alt="10" src="https://github.com/user-attachments/assets/af75fcef-14a5-4629-9552-c2e91d30ad44" />
 
+Y luego ejecutamos el siguiente comando:
+
+
 ```bash
 ! chmod +s /bin/bash
 ```
